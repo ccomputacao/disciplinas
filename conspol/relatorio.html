@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Relatório CONSPOL</title>
+		<link rel="stylesheet" href="estilo.css" />
+	</head>
+	<body>
+		<header>
+			<div class="cabecalho">
+				<ul>
+					<li><img src="unifap.jpg" alt="Brasão UNIFAP" class="unifap" /></li>
+					<li>Universidade Federal do Amapá</li>
+					<li>Departamento de Ciências Exatas e Tecnológicas</li>
+					<li>Curso de Bacharelado em Ciência da Computação</li>
+					<li>Disciplina: Teoria dos Grafos</li>
+					<li>Professora: Patrícia Araújo de Oliveira</li>
+					<li>Aluno: Lucas Matheus Araújo Trajano de Souza</li>
+				</ul>
+			</div>
+		</header>
+		<main>
+			<section class="enunciado">
+				<h1>1. Enunciado</h1>
+				<p>
+					O trabalho deve ter uma solução geral; na descrição do problema existe
+					apenas um exemplo que deve ser tomado como base, mas a solução deve
+					ser genérica. Não existe restrição de linguagem, se pode escolher
+					qualquer linguagem de programação que quiser.
+				</p>
+				<p>O aluno deve entregar o código fonte e um relatório contendo:</p>
+				<ul>
+					<li>
+						Uma descrição do problema e como o problema pode ser solucionado com
+						a teoria dos grafos;
+					</li>
+					<li>Dois exemplos em que o algoritmo possa ser aplicado;</li>
+					<li>
+						Análise do trabalho:
+						<ul>
+							<li>O que aprendeu;</li>
+							<li>As principais dificuldades encontradas no trabalho.</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section class="descricao">
+				<h1>2. Descrição</h1>
+
+				<h1>2.1 Problema</h1>
+				<p>
+					Os agentes A, B, C, D, E, F, G e H são conspiradores políticos. De
+					forma a coordenar seus esforços, é vital que cada agente seja capaz de
+					comunicar-se direta ou indiretamente com todos os outros
+					conspiradores. Esta comunicação, contudo, envolve um certo risto para
+					cada um. Os fatos de risco associados à comunicação direta entre cada
+					par de conspiradores é dada por:
+				</p>
+
+				<div class="tabela1">
+					<h6>Tabela 1. Tabela dos conspiradores políticos</h6>
+					<table>
+						<thead>
+							<tr>
+								<th>A</th>
+								<th>A</th>
+								<th>A</th>
+								<th>A</th>
+								<th>A</th>
+								<th>B</th>
+								<th>B</th>
+								<th>C</th>
+								<th>C</th>
+								<th>C</th>
+								<th>C</th>
+								<th>D</th>
+								<th>D</th>
+								<th>E</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>B</td>
+								<td>C</td>
+								<td>E</td>
+								<td>F</td>
+								<td>G</td>
+								<td>C</td>
+								<td>F</td>
+								<td>D</td>
+								<td>F</td>
+								<td>G</td>
+								<td>H</td>
+								<td>E</td>
+								<td>H</td>
+								<td>H</td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td>3</td>
+								<td>8</td>
+								<td>3</td>
+								<td>4</td>
+								<td>10</td>
+								<td>6</td>
+								<td>6</td>
+								<td>4</td>
+								<td>5</td>
+								<td>7</td>
+								<td>6</td>
+								<td>3</td>
+								<td>5</td>
+							</tr>
+						</tbody>
+					</table>
+					<h6>Fonte: MOUTINHO (2019)</h6>
+				</div>
+
+				<p>
+					Todas as outras comunicações diretas são impraticáveis pois exporiam
+					todo o esquema de disfarce. Qual o menor risco total envolvido neste
+					sistema de conexão, ou seja, o menor risco para que cada uma mensagem
+					seja repassada para todos os conspiradores?
+				</p>
+				<h1>2.2 Como pode ser solucionado</h1>
+				<p>
+					Primeiramente, antes de partir para a solução do problema, é
+					importante desenhar o grafo correspondente ao problema; através dele
+					fica mais fácil de visualizar o quadro todo. O texto sugere, ao dizer
+					"comunicação direta entre cada par de conspiradores", que este é um
+					grafo não direcionado. As informações dadas resultam no grafo da
+					Imagem 1.
+				</p>
+
+				<div class="imagem">
+					<h6>Imagem 1. Grafo dos conspiradores políticos</h6>
+					<div class="div-img">
+						<img
+							src="grafo.png"
+							alt="Grafos dos conspiradores políticos"
+							class="img"
+							id="img1"
+						/>
+					</div>
+					<h6>Fonte: Elaborada pelo autor utilizando a ferramenta draw.io</h6>
+				</div>
+
+				<p>
+					Pelo grafo, podemos notar que o problema se resume a encontrar o
+					caminho de menor custo baseado nos pesos das arestas, e, para este
+					fim, podemos utilizar o algoritmo de Dijkstra. Segundo OLIVEIRA (2019,
+					p. 5)
+					<span class="indireta">
+						"o algoritmo de Dijkstra calcula o caminho mais curto (de custo
+						mínimo), em termos de
+						<span class="negrito">peso total das arestas</span>, entre um
+						<span class="negrito">nó inicial</span> e todos os demais nós do
+						grafo; o <span class="negrito">peso total das arestas</span> será a
+						<span class="negrito">soma</span> dos
+						<span class="negrito">pesos</span> de todas as
+						<span class="negrito">arestas</span> que compõe o caminho".
+					</span>
+				</p>
+
+				<p>
+					Sendo esse o
+					<span class="italico">elemento de teoria dos grafos</span> que vamos
+					utilizar para resolver o problema, o próximo passo é escolher a
+					linguagem de programação e começar a implementação. Para este problema
+					em particular, a linguagem escolhida foi a
+					<span class="negrito">C</span>, pois é uma linguagem boa de se
+					trabalhar e possui uma ferramenta poderosa, que são os ponteiros,
+					ótimos para desenvolver grafos e listas.
+				</p>
+
+				<p>
+					O primeiro passo para a implementação do algoritmo é
+					<span class="negrito">codificar o grafo</span>, e podemos fazer isso
+					utilizando uma <span class="italico">lista de adjacência</span>. Para
+					definir essa lista, podemos utilizar uma
+					<span class="negrito">estrutura</span>
+					da seguinte forma:
+				</p>
+
+				<div class="codigo">
+					<h6>Código 1. Estrutura da lista de adjacência</h6>
+					<pre>
+						<span class="linha">   <span class="token reservadas">typedef struct</span> <span class="token struct">Vertice</span> {</span>
+						<span class="linha"><span class="token reservadas">     char</span> *nome;</span>
+						<span class="linha"><span class="token reservadas">     int</span> <span class="token array">peso</span>[V];</span>
+						<span class="linha"><span class="token reservadas">     struct</span> <span class="token struct">Vertice</span> <span class="token reservadas">*</span> <span class="token array">adjacente</span>[V];</span>
+						<span class="linha"><span class="token reservadas">     struct</span> <span class="token struct">Vertice</span> <span class="token reservadas">*</span> pre;</span>
+						<span class="linha"><span class="token reservadas">     int</span> dist;</span>
+						<span class="linha">   } Vertice;</span>
+					</pre>
+					<h6>Fonte: Elaborado pelo autor</h6>
+				</div>
+
+				<p>Nesse caso:</p>
+				<ul>
+					<li>Nome é o nome do vértice;</li>
+					<li>V é o número máximo de vértices;</li>
+					<li>
+						Para cada vertice adjacente, em um array de vértices, numerados de 0
+						a V-1, há um peso corresponde, em um array de pesos, de número
+						igual;
+					</li>
+					<li>
+						Há um vértice nomeado "pre" em cada estrutura de nó, onde este é o
+						vértice anterior do caminho;
+					</li>
+					<li>Há um valor correspondente à distância (dist).</li>
+				</ul>
+
+				<p>
+					Também é importante criar uma lista encadeada, para que esta possa
+					salvar informações úteis:
+				</p>
+
+				<div class="codigo">
+					<h6>Código 2. Estrutura da lista encadeada</h6>
+					<pre>
+						<span class="linha">   <span class="token reservadas">typedef struct</span> <span class="token struct">Lista</span> { </span>
+						<span class="linha"><span class="token reservadas">     struct</span> <span class="token struct">Vertice</span> * <span class="token array">vertice</span>; </span>
+						<span class="linha"><span class="token reservadas">     struct</span> <span class="token struct">Lista</span> * <span class="token array">proximo</span>;</span>
+						<span class="linha">   } Lista;</span>
+					</pre>
+					<h6>Fonte: Elaborado pelo autor</h6>
+				</div>
+
+				<p>
+					Definidas as estruturas das listas, é necessário apenas criar as
+					funções para
+					<span class="negrito">inserir</span>,
+					<span class="negrito">remover</span> e
+					<span class="negrito">listar</span> elementos da lista encadeada. Para
+					essa implementação, foi criada uma lista de adjacência do grafo dado e
+					uma lista encadeada com os vértices organizados em órdem alfabética.
+					Todas essas funções e definições podem ser encontradas no
+					<span class="italico">header</span>
+					"<a href="grafo.h">grafo.h</a>".
+				</p>
+
+				<p>
+					O próximo passo é <span class="negrito">codificar</span> o
+					<span class="negrito">algoritmo de Dijkstra</span>. Para isso, é
+					necessário que o utilizador do programa escolha os vértices de origem
+					e destino. Em seguida, para cada input, é necessário criar dois novos
+					ponteiros, do tipo
+					<code><span class="code-span token struct">Vertice</span></code>
+					que vão apontar para os vértices de origem e destino. Uma maneira de
+					atingir esse objetivo é utilizando a lista encadeada definida acima.
+				</p>
+
+				<p>
+					Para começar a escrever a lógica do
+					<span class="negrito">Dijkstra</span>, é importante utilizar alguma
+					ferramenta gráfica, pois, computacionalmente, pode ficar difícil de
+					entender o que está acontecendo. Para a primeira implementação, o
+					caminho escolhido foi de A à D. Uma boa ferramenta que ajudou a
+					acompanhar cada fase de implementação do algoritmo foi o
+					<span class="italico">quadro branco</span>, sempre útil ao trabalhar
+					com problemas complexos como este. Para este exemplo, foram definidos
+					todos os passos que o algoritmo deve seguir e o que vai acontecer em
+					cada um desses passos. É possível visualizar a solução do problema na
+					Imagem 2.
+				</p>
+
+				<div class="imagem">
+					<h6>Imagem 2. Exemplo de solução para a comunição de A à D</h6>
+					<div class="div-img">
+						<img
+							src="exemplo.jpg"
+							alt="Grafos dos conspiradores políticos"
+							class="img"
+							id="img2"
+						/>
+					</div>
+					<h6>Fonte: Elaborada pelo autor</h6>
+				</div>
+
+				<p>
+					Com todos os elementos em mente, podemos efetivamente começar a
+					escrever o algoritmo. Primeiro, escrevemos as funções auxiliares
+					definidas no Código 3, que, respectivamente, desempenham as seguintes
+					funções:
+				</p>
+
+				<ol>
+					<li>
+						Requisitar e retornar um
+						<code
+							><span class="code-span"
+								><span class="token reservadas">char</span></span
+							></code
+						>
+						escolhido para ser utilizado na função
+						<code
+							><span class="code-span"
+								><span class="token funcao">opcoes</span></span
+							></code
+						>;
+					</li>
+					<li>
+						Retornar um número, [0-7], que corresponde às letras [A-H],
+						independente da sua capitalização, o que torna o algoritmo
+						<span class="italico">case insensitive</span>;
+					</li>
+					<li>
+						Retornar o vértice escolhido.
+					</li>
+				</ol>
+
+				<p>
+					As três funções dependem uma da outra, em ordem, e são necessárias
+					para o funcionamento do Código 4 no problema definido. Todas essas são
+					chamadas na função
+					<code
+						><span class="code-span"
+							><span class="token funcao">main</span></span
+						></code
+					>, que pode ser visualizada no arquivo
+					<a href="algoritmo.c">algoritmo.c</a>.
+				</p>
+
+				<div class="codigo">
+					<h6>Código 3. Funções auxiliares</h6>
+					<pre>
+						<span class="linha">   <span class="token reservadas">int</span> <span class="token funcao">escolha</span>(<span class="token reservadas">char</span> *<span class="token array">string</span>);</span>
+						<span class="linha">   <span class="token reservadas">int</span> <span class="token funcao">opcoes</span>(<span class="token reservadas">char</span> <span class="token array">g</span>);</span>
+						<span class="linha">   Vertice * <span class="token funcao">no</span>(<span class="token reservadas">int</span> <span class="token array">n</span>);</span>
+					</pre>
+					<h6>Fonte: Elaborado pelo autor</h6>
+				</div>
+
+				<p>
+					A função em Código 4 recebe quatro parâmetros, sendo esses,
+					respectivamente:
+				</p>
+
+				<ol>
+					<li>O vértice de origem;</li>
+					<li>O vértice de destino;</li>
+					<li>Uma lista encadeada com os vértices que devem ser visitados;</li>
+					<li>Um contador que conta quantas vezes a função foi chamada.</li>
+				</ol>
+
+				<div class="codigo">
+					<h6>Código 4. Algoritmo de Dijsktra</h6>
+					<pre>
+						<span class="linha">  <span class="token reservadas">int</span> <span class="token funcao">dijkstra</span>(Vertice * <span class="token array">o</span>, Vertice * <span class="token array">d</span>, Lista * <span class="token array">visitar</span>, <span class="token reservadas">int</span> <span class="token array">c</span>){</span>
+						<span class="linha">    visitar = <span class="token funcao">reduzir</span>(visitar);</span>
+						<span class="linha">  </span>
+						<span class="linha">    <span class="token declaracao">for</span> (<span class="token reservadas">int</span> j = <span class="token int">0</span>; j &lt; V; j++){</span>
+						<span class="linha">      <span class="token declaracao">if</span> (<span class="token array">o</span>-><span class="token array">adjacente</span>[j] != <span class="token reservadas">NULL</span>){</span>
+						<span class="linha">        <span class="token declaracao">if</span> (<span	class="token array">o</span>-><span class="token array">adjacente</span>[j]-><span class="token array">pre</span> == <span class="token reservadas">NULL</span>) {</span>
+						<span class="linha">          <span class="token array">o</span>-><span	class="token array">adjacente</span>[j]-><span class="token array">pre</span> = (Vertice*) <span class="token funcao">malloc</span>(<span class="token reservadas">sizeof</span>(Vertice)); </span>
+						<span class="linha">          <span class="token array">o</span>-><span	class="token array">adjacente</span>[j]-><span class="token array">pre</span> = o; </span>
+						<span class="linha">  </span>
+						<span class="linha">         <span class="token declaracao">if</span> (c == <span class="token int">0</span>){</span>
+						<span class="linha">           <span class="token array">o</span>-><span class="token array">adjacente</span>[j]-><span class="token array">dist</span> = <span class="token array">o</span>-><span class="token array">dist</span> + <span class="token array">o</span>-><span class="token array">peso</span>[j] + <span class="token int">1</span>;</span>
+						<span class="linha">         } <span class="token declaracao">else</span> {</span>
+						<span class="linha">           <span class="token array">o</span>-><span class="token array">adjacente</span>[j]-><span class="token array">dist</span> = <span class="token array">o</span>-><span class="token array">dist</span> + <span class="token array">o</span>-><span class="token array">peso</span>[j];</span>
+						<span class="linha">         }</span>
+						<span class="linha">  </span>
+						<span class="linha">         <span class="token declaracao">if</span> (<span class="token array">o</span>-><span class="token array">adjacente</span>[j]-><span	class="token array">nome</span> != <span class="token array">d</span>-><span class="token array">nome</span>) {</span>
+						<span class="linha">           visitar = <span class="token funcao">inserir</span>(visitar, <span class="token array">o</span>-><span	class="token array">adjacente</span>[j]);</span>
+						<span class="linha">         } <span class="token declaracao">else</span> {</span>
+						<span class="linha">           d = <span class="token array">o</span>-><span class="token array">adjacente</span>[j];</span>
+						<span class="linha">         }</span>
+						<span class="linha">       } <span class="token declaracao">else</span> {</span>
+						<span class="linha">         <span class="token declaracao">if</span> (<span class="token array">o</span>-><span class="token array">adjacente</span>[j]-><span	class="token array">dist</span> &gt; <span class="token array">o</span>-><span class="token array">dist</span> + <span class="token array">o</span>-><span class="token array">peso</span>[j]) {</span>
+						<span class="linha">           <span class="token array">o</span>-><span class="token array">adjacente</span>[j]-><span class="token array">dist</span> = <span class="token array">o</span>-><span class="token array">dist</span> + <span class="token array">o</span>-><span class="token array">peso</span>[j]; </span>
+						<span class="linha">           <span class="token array">o</span>-><span class="token array">adjacente</span>[j]-><span class="token array">pre</span> = o;</span>
+						<span class="linha">         }</span>
+						<span class="linha">       }</span>
+						<span class="linha">     }</span>
+						<span class="linha">   }</span>
+						<span class="linha">  </span>
+						<span class="linha">   <span class="token declaracao">if</span> (visitar != <span class="token reservadas">NULL</span>) {</span>
+						<span class="linha">     <span class="token funcao">dijkstra</span>(<span	class="token array">visitar</span>-><span class="token array">vertice</span>, d, visitar, c+1);</span>
+						<span class="linha">   } <span class="token declaracao">else</span> {</span>
+						<span class="linha">     <span class="token reservadas">int</span> distancia = <span class="token array">d</span>-><span class="token array">dist</span>;</span>
+						<span class="linha">     Lista * caminho = <span class="token reservadas">NULL</span>;</span>
+						<span class="linha">     Vertice * resultado = d;</span>
+						<span class="linha">  </span>
+						<span class="linha">     <span class="token declaracao">while</span> (<span	class="token array">resultado</span>-><span class="token array">pre</span> != <span class="token reservadas">NULL</span>){</span>
+						<span class="linha">       caminho = <span class="token funcao">preceder</span>(caminho, resultado);</span>
+						<span class="linha">       resultado = <span class="token array">resultado</span>-><span class="token array">pre</span>;</span>
+						<span class="linha">     }</span>
+						<span class="linha">  </span>
+						<span class="linha">     <span class="token funcao">printf</span>(<span class="token string">"<span class="token escape">\n</span>O melhor caminho para a comunicação é <span class="token escape">\"</span>"</span>);</span>
+						<span class="linha">     <span class="token funcao">listar</span>(caminho);</span>
+						<span class="linha">     <span class="token funcao">printf</span>(<span class="token string">"<span class="token escape">\"</span>, estando a este associado o risco de número %d.<span class="token escape">\n</span>"</span>, distancia);</span>
+						<span class="linha">   }</span>
+						<span class="linha">  </span>
+						<span class="linha">   <span class="token declaracao">return</span> <span class="token int">0</span>;</span>
+						<span class="linha"> }</span>
+					</pre>
+					<h6>Fonte: Elaborado pelo autor</h6>
+				</div>
+
+				<p>
+					O Código 4 é uma
+					<span class="italico">solução genérica</span>
+					do algoritmo de Dijkstra e vê a necessidade da utilização das funções
+					em Código 3 apenas para o fim do problema proposto, com
+					<span class="italico">inputs</span>
+					do usuário, podendo apenas ser chamado com os vértices de origem e
+					destino, uma lista encadeada nula e o número 0, que define o início do
+					algoritmo.
+				</p>
+
+				<p>
+					A função de Dijkstra utiliza o
+					<span class="negrito">poderoso</span> processo de
+					<span class="negrito">recursividade</span> enquanto a lista de
+					vértices a visitar não for nula (linha 30). Na primeira declaração,
+					<code
+						><span class="code-span"
+							><span class="token declaracao">for</span></span
+						></code
+					>, o algoritmo analisa o vértice, os adjacentes e seus respectivos
+					pesos, calcula suas distâncias, e, se o vértice não foi visitado,
+					adiciona este à lista. Todas as funções de somar pesos, analisar
+					vértices e comparar distâncias estão definidas nessa sub-rotina. No
+					final a função vai adicionar à uma lista os vértices do caminho,
+					através dos vértices "pre" na estrutura dos nós, iniciando no vértice
+					de destino e finalizando no vértice de origem, e depois vai listar os
+					vértices.
+				</p>
+
+				<p>
+					A Imagem 3 mostra o algoritmo funcionando e sua resposta ao pedido do
+					caminho de menor custo, de A à D.
+				</p>
+
+				<div class="imagem">
+					<h6>Imagem 3. Algoritmo funcionando</h6>
+					<div class="div-img">
+						<img
+							src="funcionando.png"
+							alt="Algoritmo funcionando"
+							class="img"
+							id="img3"
+						/>
+					</div>
+					<h6>Fonte: Elaborada pelo autor</h6>
+				</div>
+			</section>
+
+			<section class="exemplos">
+				<h1>3. Exemplos</h1>
+				<h1>3.1 Aplicativos de navegação</h1>
+
+				<p>
+					Aplicativos como o Google Maps e o Waze trabalham com otimizações do
+					algoritmo de Dijkstra. O usuário, ao definir um destino no aplicativo,
+					encontra diversas possibilidades de caminho de baixo custo a serem
+					seguidos, mas o caminho preferencial é o de menor custo. Os
+					aplicativos calculam a menor distância de um ponto a outro através dos
+					dados inseridos no aplicativo, como distâncias em km, ou até mesmo
+					tráfego. A Google utiliza a API
+					<a href="https://developers.google.com/maps/documentation/roads/intro"
+						>Roads</a
+					>
+					para determinar distância e tempo de navegação. Algoritmos de
+					navegação, como o Algoritmo A*, utilizado pelo Google Maps, são
+					baseados no Algoritmo de Dijkstra.
+				</p>
+
+				<h1>3.2 Redes de computadores</h1>
+
+				<p>
+					O Algoritmo de Dijkstra também pode ser usado em Protocolos de
+					Roteamento. Estes ditam a maneira com que roteadores se comunicam
+					distribuindo informações que os permite escolher um caminho entre
+					dois nós de uma rede de computadores. Alguns protocolos específicos,
+					como o IS-IS (Intermediate System to Intermediate System), na camada
+					de enlace, e o OSPF (Open Shortest Path First), no roteamento de
+					endereços IP, são exemplos de protocolos que utilizam Dijkstra.
+				</p>
+
+				<p>
+					Algoritmos para encontrar caminhos são muito usados para transmitir
+					dados pela internet, uma vez que os dados requisitados por um
+					dispositivo podem vir de qualquer servidor localizado em algum lugar
+					com conexão à internet. Sendo assim, se vê necessário que esse dado
+					encontre o menor caminho possível para percorrer, a fim de diminuir a
+					chance de erros e de delay na requisição. O algoritmo de Dijkstra
+					encontra a melhor maneira de transmitir pacotes entre nós.
+				</p>
+			</section>
+
+			<section class="analise">
+				<h1>4. Análise</h1>
+				<h1>4.1 O que foi aprendido</h1>
+
+				<p>
+					Além de aprender a implementar algoritmos complexos e a trabalhar com
+					ferramentas de linguagem de programação que são ser úteis em qualquer
+					momento da vida acadêmica e profissional do desenvolvedor, o estudo do
+					algoritmo de Dijkstra, e outros algoritmos estudados em Teoria dos
+					Grafos, auxilia no entendimento de como programar no mundo real,
+					como trabalhar com a lógica além do básico, quais os tipos de solução
+					podemos dar para determinado problema e como trabalhar para
+					resolvê-lo.
+				</p>
+
+				<p>
+					No final, em qualquer momento da vida profissional de um
+					desenvolvedor, sempre dá pra lembrar dos ensinamentos advindos da
+					Universidade e dos professores que nela trabalharam. O conhecimento é
+					muito valioso e a implementação ajuda em diversos fatores.
+				</p>
+
+				<h1>4.2 Principais dificuldades</h1>
+
+				<p>
+					As principais dificuldades ao desenvolver um algoritmo e se deparar
+					com um problema dessa complexidade geralmente se encontram na mente do
+					desenvolvedor e na sua capacidade de entender a linguagem com que está
+					trabalhando e a lógica a ser seguida.
+				</p>
+
+				<p>
+					Neste caso não foi diferente. A linguagem C possui muitas qualidades,
+					porém pode gerar muitos problemas, como falhas de segmentação e erros
+					de memória. Ao trabalhar com ponteiros isso é muito comum de
+					acontecer, e debugar nem sempre é uma tarefa simples. Como esse
+					problema trabalha especificamente com ponteiros, essa foi uma
+					dificuldade recorrente.
+				</p>
+
+				<p>
+					Outra dificuldade foi trabalhar com o recurso da recursividade. Muitas
+					vezes não dá pra saber o que está acontecendo no problema, e
+					acompanhar todos os passos pode se tornar uma tarefa arduosa.
+				</p>
+
+				<p>
+					No mais, foi um projeto que demandou muito esforço mental para tentar
+					entender e descobrir como escrever toda a lógica do algoritmo. Teria
+					sido mais difícil caso não houvesse um texto-base, como o de OLIVEIRA
+					(2019), para seguir.
+				</p>
+			</section>
+
+			<section class="consideracoes">
+				<h1>5. Considerações finais</h1>
+
+				<p>
+					A disciplina de Teoria dos Grafos, ministrada pela Professora Patrícia
+					Araújo de Oliveira, no semestre 2019.1, juntamente com a disciplina
+					Autômatos e Linguagens Formais, ministrada pela mesma docente no
+					semestre anterior, foram duas disciplinas que se completaram e me
+					auxiliaram muito no entendimento da Ciência da Computação. Embora eu
+					ainda não saiba qual caminho seguir dentro dessa área linda e vasta,
+					aprecio o conhecimento a mim repassado pela professora ao ministrar
+					as disciplinas e me sinto mais competente a ingressar, futuramente, no
+					mercado de trabalho ou na vida acadêmica.
+				</p>
+			</section>
+
+			<section class="referencias">
+				<h1>Referências</h1>
+				<p class="referencia">
+					BITESIZE DATA SCIENCE.
+					<span class="negrito">
+						Navigation Apps: The Algorithms that Get You from Here to
+						There.</span
+					>. Disponível em:
+					https://bitesizedatascience.com/2019/01/31/navigation-apps-the-algorithms-that-get-you-from-here-to-there/
+					Acesso em: 22 de junho de 2019
+				</p>
+				<p class="referencia">
+					GEO AWESOMENESS.
+					<span class="negrito">
+						The famous algorithm that made navigation in Google Maps a
+						reality.</span
+					>
+					Disponível em:
+					https://geoawesomeness.com/the-famous-algorithm-that-made-navigation-in-google-maps-a-reality/
+					Acesso em: 22 de junho de 2019
+				</p>
+				<p class="referencia">
+					COMPUTER NETWORKING.
+					<span class="negrito"> Dijkstra's algorithm.</span> Disponível em:
+					expertcomputernetworking.blogspot.com/2016/03/dijkstras-algorithm.html
+					Acesso em: 26 de junho de 2019
+				</p>
+				<p class="referencia">
+					OLIVEIRA, P. A.
+					<span class="negrito">Algoritmo de Dijsktra.</span> Universidade
+					Federal do Amapá, Macapá, 2019
+				</p>
+				<p class="referencia">
+					QUORA.
+					<span class="negrito">
+						Does Google Maps use Dijkstra’s algorithm for shortest path?</span
+					>
+					Disponível em:
+					https://www.quora.com/Does-Google-Maps-use-Dijkstra-s-algorithm-for-shortest-path
+					Acesso em: 25 de junho de 2019
+				</p>
+				<p class="referencia">
+					QUORA.
+					<span class="negrito">
+						What are practical/real life/industrial applications of Dijkstra,
+						Kruskal, and Prim's Algortithm?</span
+					>
+					Disponível em:
+					https://www.quora.com/What-are-practical-real-life-industrial-applications-of-Dijkstra-Kruskal-and-Prims-Algortithm
+					Acesso em: 25 de junho de 2019
+				</p>
+				<p class="referencia">
+					STACK OVERFLOW.
+					<span class="negrito">
+						What algorithms compute directions from point A to point B on a
+						map?</span
+					>
+					Disponível em:
+					https://stackoverflow.com/questions/430142/what-algorithms-compute-directions-from-point-a-to-point-b-on-a-map
+					Acesso em: 23 de junho de 2019
+				</p>
+				<p class="referencia">
+					WIKIPEDIA.
+					<span class="negrito"> Routing protocol.</span> Disponível em:
+					https://en.wikipedia.org/wiki/Routing_protocol Acesso em: 26 de junho
+					de 2019
+				</p>
+			</section>
+		</main>
+	</body>
+</html>
